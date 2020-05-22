@@ -1,0 +1,51 @@
+HBase是一个分布式的、面向列的开源数据库
+
+hbase是bigtable的开源山寨版本。是建立的hdfs之上，提供高可靠性、高性能、列存储、可伸缩、实时读写的数据库系统。
+它介于nosql和RDBMS之间，仅能通过主键(row key)和主键的range来检索数据，仅支持单行事务(可通过hive支持来实现多表join等复杂操作)。主要用来存储非结构化和半结构化的松散数据。
+与hadoop一样，Hbase目标主要依靠横向扩展，通过不断增加廉价的商用服务器，来增加计算和存储能力
+
+HBase中的表一般有这样的特点：
+1 大：一个表可以有上亿行，上百万列
+2 面向列:面向列(族)的存储和权限控制，列(族)独立检索。
+3 稀疏:对于为空(null)的列，并不占用存储空间，因此，表可以设计的非常稀疏。
+
+
+命令行操作
+hbase目录下执行 bin/hbase shell
+//查看表
+hbase(main)> list
+//hbase创建表
+create  'kj_tradeforms','f'
+//删除表
+hbase(main)> disable 'kj_tradeforms'
+hbase(main)> drop 'kj_tradeforms'
+//查看表
+ describe 'kj_tradeforms','f'
+//查看表数据
+ scan 'kj_tradeforms'
+
+
+HBASE中查看数据发现存储的是十六进制编码字符串 
+
+
+get 'kj_tradeform_ys','nafrj3yn808385280598458035',{FORMATTER => 'toString'}
+
+scan 'kj_tradeform_ys','nafrj3yn808385280598458035',{FORMATTER => 'toString'}
+
+hbase中根据rowkey模糊查询
+scan 'tablename',{STARTROW=>'rowkey_name_prefix',STOPROW=>'rowkey_name_prefixz'}
+
+scan 'kj_ic_out',{STARTROW=>'nafrj3ynKF-B2C-TM20200101',STOPROW=>'nafrj3ynKF-B2C-TM20200101z'}
+
+hbase中根据列数据模糊查询
+
+scan 'kj_commondate_ys', FILTER=>"ColumnPrefixFilter('data') AND ValueFilter(=,'substring:THRK')"
+列data中包含THRK的数据
+
+表kj_ic_sk中指定rowkey数据
+get 'kj_ic_sk','nafrj3ynRC-B2C-JD202001033210012001011529668484528'
+get 'tablename','rowkey'
+
+hbase中根据rowkey删除整行数据
+deleteall 'kj_ic_sk','nafrj3ynRC-B2C-JD202001033210012001011529668484528'
+deleteall 'tablename','rowkey'
