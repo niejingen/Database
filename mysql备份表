@@ -1,0 +1,1 @@
+ create table ap_payablebill_backup as select * from  ap_payablebill
