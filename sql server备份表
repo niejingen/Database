@@ -1,0 +1,1 @@
+select * into ap_payablebill_backup from ap_payablebill;
