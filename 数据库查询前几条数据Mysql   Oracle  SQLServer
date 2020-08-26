@@ -1,0 +1,13 @@
+（1）Mysql查询前几条数据
+select * from tablename   limit 5,10  #返回第6-15行数据 
+第一个参数指定返回的第一行在所有数据中的位置，从0开始（注意不是1），第二个参数指定最多返回行 
+（2） Oracle 查询前几条数据
+SELECT * FROM TABLE WHERE ROWNUM<=N
+
+（3）SQLServer 查询前几条数据
+SELECT TOP N * FROM TABLE
+
+（4）DB2查询前几条数据
+SELECT * ROW_NUMBER() OVER(ORDER BY COL DESC) AS ROWNUM WHERE ROWNUM<=N 
+或者
+SELECT COLUMN FROM TABLE FETCH FIRST N ROWS ONLY
