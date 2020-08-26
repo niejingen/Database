@@ -1,0 +1,7 @@
+ （1）Mysql查询10到20条数据
+select * from tablename   limit 9,10  #返回第10-20行数据 
+第一个参数指定返回的第一行在所有数据中的位置，从0开始（注意不是1），第二个参数指定最多返回行 
+（2）Oracle查询10到20条数据
+SELECT * FROM TABLE WHERE ROWNUM<=20 AND ROWNUM>=10
+（3）SQLServer查询10到20条数据
+ SELECT  * FROM FI_KJ_LOG ORDER BY 1 OFFSET 10 ROWS FETCH NEXT 10 ROWS ONLY;
