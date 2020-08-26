@@ -1,0 +1,5 @@
+1，查看连接到‘20200509’数据库的连接
+select * from master.dbo.sysprocesses where dbid = DB_ID('20200509')
+
+
+https://www.cnblogs.com/xiashengwang/p/8581104.html
