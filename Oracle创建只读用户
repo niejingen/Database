@@ -1,0 +1,14 @@
+--创建用户
+Create  user  NC65READ  Identified  By  NC65READ; 
+
+-- 授予所有字典的查询权限
+GRANT  SELECT  ANY  DICTIONARY  TO  NC65READ;  
+ 
+--授予所有序列的查询权限
+GRANT  SELECT  ANY  SEQUENCE  TO  NC65READ;  
+
+--授予所有表的查询权限 
+GRANT  SELECT  ANY  TABLE  TO  NC65READ;  
+
+grant create session to NC65READ;
+grant create public database link to NC65READ;
