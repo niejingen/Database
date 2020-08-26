@@ -1,0 +1,14 @@
+（1）Mysql查询后几条数据
+a：mysql有自增主键
+select * from table order by tss desc limit 2
+b：mysql没有自增主键
+select count(*) from table
+select * from kj_commondate_jyck limit table数据量-1,1
+（2）Oracle查询后几条数据
+select * from (select t.*,rownum n from fi_kj_log t) where n > (select count(1)-10 from fi_kj_log) and n <= (select count(1) from fi_kj_log )
+（3）SQLServer查询后几条数据
+a：SQLServer有自增主键
+SELECT TOP N * FROM TABLE   按照自增id进行降序desc
+select pk_recbill from (select top 10  * from ar_recitem order by ts desc)a
+
+b：SQLServer没有自增主键
